@@ -27,6 +27,9 @@ open EC2 console and use link from there. (p.s. port: 5000 because Nginx proxy m
 ### Run with docker
 Before starting application, docker images with MySql needs to be started (see above)
 Application contains Dockerfile to be able to create an image and run container via docker. You can build your own image based on Dockerfile or just use already created: realhedin/simpleec2foraws (docker run -dp 5000:5000 realhedin/bootwithdb)
+Plus, repo contains docker-compose.yml to run both app and DB.
+(it uses restart-onfailure, so app with restart 1 or 2 times, 
+waiting for MySql will be in working state)
 
 
 ### Reference Documentation

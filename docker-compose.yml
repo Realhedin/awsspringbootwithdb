@@ -1,0 +1,30 @@
+version: "3"
+services: 
+  bootwithdb:
+    image: realhedin/bootwithdb
+    ports:
+      - "5000:5000"
+    networks:
+      - foodtrucks
+    depends_on:
+      - aws-eb-mysql
+    links:
+      - aws-eb-mysql
+    #version 3 does not support depends_on
+    #and it does not wait until app is ready
+    restart: on-failure
+  
+  aws-eb-mysql:
+    image: mysql:8.0.11
+    ports:
+      - "3306:3306"
+    networks:
+      - foodtrucks
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=aws_eb_db  
+      
+  
+
+networks:
+  foodtrucks: 
